@@ -30,7 +30,7 @@ const FilterBy = styled.div`
 function FilterProducts() {
   const { dispatch } = useStore();
   const [filter, setFilter] = useState("");
-  const [sortBy, setSortBy] = useState(0);
+  const [sortBy, setSortBy] = useState("");
 
   const handleFilterChange = (e: any) => {
     setFilter(e.target.value);
@@ -43,6 +43,7 @@ function FilterProducts() {
   };
 
   const clearFilterAndSortBy = () => {
+    setSortBy(0);
     setFilter("");
     dispatch(getProducts());
   };
@@ -55,9 +56,9 @@ function FilterProducts() {
           <input
             type="radio"
             name="sort"
-            checked={sortBy == -1}
+            checked={sortBy == "decreasing"}
             onChange={handleSortByChange}
-            value={-1}
+            value="decreasing"
           />
           <label>High-to-Low</label>
         </div>
@@ -65,9 +66,9 @@ function FilterProducts() {
           <input
             type="radio"
             name="sort"
-            checked={sortBy == 1}
+            checked={sortBy == "increasing"}
             onChange={handleSortByChange}
-            value={1}
+            value="increasing"
           />
           <label>Low-to-High</label>
         </div>

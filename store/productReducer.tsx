@@ -21,10 +21,13 @@ export const filterProductsBySize = (size: string) => ({
   data: { size },
 });
 
-export const sortProductsByPrice = (sortBy: number) => ({
-  type: SORT_PRODUCTS,
-  data: { sortBy },
-});
+export const sortProductsByPrice = (sortBy: string) => {
+  console.log(sortBy);
+  return {
+    type: SORT_PRODUCTS,
+    data: { sortBy },
+  };
+};
 
 function productReducer(
   state: StateType = initialState,
@@ -38,15 +41,22 @@ function productReducer(
         ),
         filter: action.data.size,
       };
+
     case SORT_PRODUCTS:
       return {
         products: [
-          ...state.products.sort(
-            (product: ProductDataType) => action.data.sortBy
-          ),
+          ...state.products.sort((a, b) => {
+            if (action.data.sortBy === "decreasing") {
+              return b.price - a.price;
+            }
+            if (action.data.sortBy === "increasing") {
+              return a.price - b.price;
+            } else return 0;
+          }),
         ],
         filter: action.data.size,
       };
+
     case GET_PRODUCTS:
       return {
         products: action.data.products,
