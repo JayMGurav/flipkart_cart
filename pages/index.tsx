@@ -1,4 +1,3 @@
-import { filterProducts } from "@/store/productReducer";
 import { useStore } from "@/store/Store";
 import styled from "styled-components";
 
@@ -13,11 +12,8 @@ const Container = styled.main`
 `;
 
 export default function Home() {
-  const { state, dispatch } = useStore();
+  const { state } = useStore();
 
-  const handleClick = () => {
-    // dispatch(filterProducts());
-  };
   return (
     <div>
       <HeaderBar />

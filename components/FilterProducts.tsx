@@ -32,12 +32,12 @@ function FilterProducts() {
   const [filter, setFilter] = useState("");
   const [sortBy, setSortBy] = useState(0);
 
-  const handleFilterChange = (e) => {
+  const handleFilterChange = (e: any) => {
     setFilter(e.target.value);
     dispatch(filterProductsBySize(e.target.value));
   };
 
-  const handleSortByChange = (e) => {
+  const handleSortByChange = (e: any) => {
     setSortBy(e.target.value);
     dispatch(sortProductsByPrice(e.target.value));
   };
