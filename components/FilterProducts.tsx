@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Image from "next/image";
-import { useStore } from "@/store/Store";
 import { useState } from "react";
+
+import { useStore } from "@/store/Store";
 import {
   filterProductsBySize,
   setProducts,
@@ -57,9 +57,9 @@ function FilterProducts() {
           <input
             type="radio"
             name="sort"
-            checked={sortBy == "decreasing"}
+            checked={sortBy == "desc"}
             onChange={handleSortByChange}
-            value="decreasing"
+            value="desc"
           />
           <label>High-to-Low</label>
         </div>
@@ -67,9 +67,9 @@ function FilterProducts() {
           <input
             type="radio"
             name="sort"
-            checked={sortBy == "increasing"}
+            checked={sortBy == "asc"}
             onChange={handleSortByChange}
-            value="increasing"
+            value="asc"
           />
           <label>Low-to-High</label>
         </div>

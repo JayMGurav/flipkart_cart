@@ -7,8 +7,8 @@ export const SORT_PRODUCTS = "SORT_PRODUCTS";
 
 export const initialState: StateType = {
   products: [],
-  filter: "",
-  sortedBy: "",
+  filter: null,
+  sortedBy: null,
 };
 
 export const setProducts = (productData: Array<ProductDataType>) => ({
@@ -49,10 +49,10 @@ function productReducer(
         sortedBy: action.data.sortBy,
         products: [
           ...state.products.sort((a, b) => {
-            if (action.data.sortBy === "decreasing") {
+            if (action.data.sortBy === "desc") {
               return b.price - a.price;
             }
-            if (action.data.sortBy === "increasing") {
+            if (action.data.sortBy === "asc") {
               return a.price - b.price;
             } else return 0;
           }),
@@ -62,8 +62,8 @@ function productReducer(
     case SET_PRODUCTS: {
       return {
         products: action.data.products,
-        filter: "",
-        sortedBy: "",
+        filter: null,
+        sortedBy: null,
       };
     }
     default:

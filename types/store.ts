@@ -2,8 +2,8 @@ import { ProductDataType } from "./product";
 
 export type StateType = {
   products: Array<ProductDataType>;
-  filter: string;
-  sortedBy: string;
+  filter: string | null;
+  sortedBy: "asc" | "desc" | null;
 };
 
 export type ActionType = {

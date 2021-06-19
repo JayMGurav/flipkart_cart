@@ -21,7 +21,7 @@ export default function Home({
   return (
     <div>
       <HeaderBar />
-      <StoreProvider initialState={{ filter: "", sortedBy: "", products }}>
+      <StoreProvider initialState={{ filter: null, sortedBy: null, products }}>
         <Container>
           <FilterProducts />
           <ProductList />
