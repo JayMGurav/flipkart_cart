@@ -63,7 +63,7 @@ const productData: Array<ProductDataType> = [
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Array<ProductData>>
+  res: NextApiResponse<Array<ProductDataType>>
 ) {
   res.status(200).json(productData);
 }
