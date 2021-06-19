@@ -43,7 +43,7 @@ function FilterProducts() {
   };
 
   const clearFilterAndSortBy = () => {
-    setSortBy(0);
+    setSortBy("");
     setFilter("");
     dispatch(getProducts());
   };
