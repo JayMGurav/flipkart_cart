@@ -1,4 +1,4 @@
-import { ProductDataType } from "@/types/product";
+import { useStore } from "@/store/Store";
 import styled from "styled-components";
 import Product from "./Product";
 
@@ -12,10 +12,11 @@ const ProductListDiv = styled.div`
   gap: 2ch;
 `;
 
-function ProductList({ products }: { products: Array<ProductDataType> }) {
+function ProductList() {
+  const { state } = useStore();
   return (
     <ProductListDiv>
-      {products.map((product) => (
+      {state.products.map((product) => (
         <Product product={product} key={Math.random()} />
       ))}
     </ProductListDiv>

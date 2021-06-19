@@ -1,18 +1,18 @@
 import { ProductDataType } from "@/types/product";
 import { StateType, ActionType } from "@/types/store";
-import productData from "../data";
 
-export const GET_PRODUCTS = "GET_PRODUCTS";
+export const SET_PRODUCTS = "SET_PRODUCTS";
 export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
 export const SORT_PRODUCTS = "SORT_PRODUCTS";
 
 export const initialState: StateType = {
   products: [],
   filter: "",
+  sortedBy: "",
 };
 
-export const getProducts = () => ({
-  type: GET_PRODUCTS,
+export const setProducts = (productData: Array<ProductDataType>) => ({
+  type: SET_PRODUCTS,
   data: { products: productData },
 });
 
@@ -36,6 +36,7 @@ function productReducer(
   switch (action.type) {
     case FILTER_PRODUCTS:
       return {
+        ...state,
         products: state.products.filter((product: ProductDataType) =>
           product.size.includes(action.data.size)
         ),
@@ -44,6 +45,8 @@ function productReducer(
 
     case SORT_PRODUCTS:
       return {
+        ...state,
+        sortedBy: action.data.sortBy,
         products: [
           ...state.products.sort((a, b) => {
             if (action.data.sortBy === "decreasing") {
@@ -54,15 +57,15 @@ function productReducer(
             } else return 0;
           }),
         ],
-        filter: action.data.size,
       };
 
-    case GET_PRODUCTS:
+    case SET_PRODUCTS: {
       return {
         products: action.data.products,
         filter: "",
+        sortedBy: "",
       };
-
+    }
     default:
       return state;
   }

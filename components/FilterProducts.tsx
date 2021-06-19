@@ -4,7 +4,7 @@ import { useStore } from "@/store/Store";
 import { useState } from "react";
 import {
   filterProductsBySize,
-  getProducts,
+  setProducts,
   sortProductsByPrice,
 } from "@/store/productReducer";
 
@@ -42,10 +42,11 @@ function FilterProducts() {
     dispatch(sortProductsByPrice(e.target.value));
   };
 
-  const clearFilterAndSortBy = () => {
+  const clearFilterAndSortBy = async () => {
     setSortBy("");
     setFilter("");
-    dispatch(getProducts());
+    const products = await fetch("/api/products").then((res) => res.json());
+    dispatch(setProducts(products));
   };
 
   return (

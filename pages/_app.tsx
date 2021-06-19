@@ -6,9 +6,9 @@ import productData from "data";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <StoreProvider initialState={{ filter: "", products: productData }}>
-      <Component {...pageProps} />
-    </StoreProvider>
+    // <StoreProvider initialState={{ filter: "", products: productData }}>
+    <Component {...pageProps} />
+    // </StoreProvider>
   );
 }
 
