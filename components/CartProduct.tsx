@@ -9,6 +9,7 @@ import {
 
 import { CartProductType } from "@/types/cartProduct";
 import Button from "@/styles/Button";
+import { useToasts } from "react-toast-notifications";
 
 const StyledCartProduct = styled.div`
   max-width: 100%;
@@ -62,6 +63,7 @@ const DecreaseProductQuantity = styled.button`
 
 export default function CartProduct({ product }: { product: CartProductType }) {
   const { dispatch } = useStore();
+  const { addToast } = useToasts();
 
   const changeQuantity = (quantity: number) => {
     if (quantity >= 1) {
@@ -71,11 +73,13 @@ export default function CartProduct({ product }: { product: CartProductType }) {
           quantity,
         })
       );
+      addToast(`Changed product quantity`, { appearance: "info" });
     }
   };
 
   const removeProduct = () => {
     dispatch(removeProductFromCart(product.id));
+    addToast("Removed item", { appearance: "error" });
   };
 
   return (

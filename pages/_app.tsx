@@ -1,4 +1,6 @@
 import "@/styles/globals.css";
+import { ToastProvider } from "react-toast-notifications";
+
 import type { AppProps } from "next/app";
 import StoreProvider from "@/store/Store";
 
@@ -11,7 +13,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     <StoreProvider
       initialState={{ products: [], cart: [], filter: null, sortedBy: null }}
     >
-      <Component {...pageProps} />
+      <ToastProvider
+        placement="bottom-right"
+        autoDismiss={true}
+        autoDismissTimeout={4000}
+      >
+        <Component {...pageProps} />
+      </ToastProvider>
     </StoreProvider>
   );
 }

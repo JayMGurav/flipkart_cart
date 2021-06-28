@@ -4,6 +4,7 @@ import { ProductDataType } from "@/types/product";
 import { useStore } from "@/store/Store";
 import { addProductToCart } from "@/store/productReducer";
 import Button from "@/styles/Button";
+import { useToasts } from "react-toast-notifications";
 
 const ProductDiv = styled.div`
   display: flex;
@@ -29,6 +30,7 @@ const ProductDetailsDiv = styled.div`
 `;
 
 function Product({ product }: { product: ProductDataType }) {
+  const { addToast } = useToasts();
   const { dispatch } = useStore();
   const addToCart = () => {
     const productToCart = {
@@ -37,6 +39,9 @@ function Product({ product }: { product: ProductDataType }) {
       selectedSizes: [],
     };
     dispatch(addProductToCart(productToCart));
+    addToast("Added product to cart", {
+      appearance: "success",
+    });
   };
 
   return (
