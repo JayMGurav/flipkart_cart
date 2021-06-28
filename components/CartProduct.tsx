@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-import HeaderBar from "@/components/Header";
 import { useStore } from "@/store/Store";
-import { useEffect } from "react";
 import {
   changeCartProductQuantity,
   removeProductFromCart,
-  setCart,
 } from "@/store/productReducer";
 
 import { CartProductType } from "@/types/cartProduct";

@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
-import StoreProvider, { useStore } from "@/store/Store";
+import { useStore } from "@/store/Store";
 import HeaderBar from "@/components/Header";
 import ProductList from "@/components/ProductList";
 import FilterProducts from "@/components/FilterProducts";
@@ -35,7 +35,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const products = await fetch(`http://localhost:3000/api/products`).then(
     (res) => res.json()
   );
-  // console.log(products);
   return {
     props: {
       products,

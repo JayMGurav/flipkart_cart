@@ -14,7 +14,6 @@ const ProductListDiv = styled.div`
 
 function ProductList() {
   const { state } = useStore();
-  // console.log(state);
   return (
     <ProductListDiv>
       {state.products.map((product) => (
