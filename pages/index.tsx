@@ -32,9 +32,9 @@ export default function Home({
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const products = await fetch(`http://localhost:3000/api/products`).then(
-    (res) => res.json()
-  );
+  const products = await fetch(
+    `https://flipkart-cartpage.vercel.app/api/products`
+  ).then((res) => res.json());
   return {
     props: {
       products,
