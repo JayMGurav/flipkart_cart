@@ -6,6 +6,7 @@ export enum SizeType {
 }
 
 export interface ProductDataType {
+  id: number;
   name: string;
   brand: string;
   price: number;

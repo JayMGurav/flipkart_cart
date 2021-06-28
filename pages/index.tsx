@@ -1,41 +1,41 @@
 import { GetServerSideProps } from "next";
 import styled from "styled-components";
 
-import StoreProvider from "@/store/Store";
+import StoreProvider, { useStore } from "@/store/Store";
 import HeaderBar from "@/components/Header";
 import ProductList from "@/components/ProductList";
 import FilterProducts from "@/components/FilterProducts";
 import { ProductDataType } from "@/types/product";
-
-const Container = styled.main`
-  max-width: 900px;
-  padding: 0.5rem;
-  margin: 0 auto;
-`;
+import { useEffect } from "react";
+import { setProducts } from "@/store/productReducer";
+import { Container } from "@/styles/Container";
 
 export default function Home({
   products,
 }: {
   products: Array<ProductDataType>;
 }) {
+  const { dispatch } = useStore();
+  useEffect(() => {
+    dispatch(setProducts(products));
+  }, [products, dispatch]);
+
   return (
     <div>
       <HeaderBar />
-      <StoreProvider initialState={{ filter: null, sortedBy: null, products }}>
-        <Container>
-          <FilterProducts />
-          <ProductList />
-        </Container>
-      </StoreProvider>
+      <Container>
+        <FilterProducts />
+        <ProductList />
+      </Container>
     </div>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const products = await fetch(
-    `https://flipkart-demo.vercel.app/api/products`
-  ).then((res) => res.json());
-
+  const products = await fetch(`http://localhost:3000/api/products`).then(
+    (res) => res.json()
+  );
+  // console.log(products);
   return {
     props: {
       products,
